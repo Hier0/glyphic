@@ -47,6 +47,7 @@ import {
 } from 'lucide-react'
 import { Switch } from "@/components/ui/switch"
 import { NodeLibrary } from './workflow-builder/node-library'
+import { nodeConfigs } from './workflow-builder/nodes/node-configs'
 
 // Custom Node Components
 function FlowBasicsNode({ data }: NodeProps) {
@@ -218,14 +219,24 @@ export function WorkflowBuilder() {
   )
 
   const onAddNode = useCallback((type: string) => {
+    const config = nodeConfigs[type as keyof typeof nodeConfigs];
     const newNode: Node = {
       id: `${type}_${Date.now()}`,
       type,
-      position: { x: 400, y: 200 },
-      data: { label: type },
-    }
-    setNodes((nds) => [...nds, newNode])
-  }, [setNodes])
+      position: { 
+        x: Math.random() * 500, 
+        y: Math.random() * 500 
+      },
+      data: { 
+        label: config.title,
+        description: config.description,
+        fields: config.fields,
+        icon: config.icon,
+        category: config.category
+      },
+    };
+    setNodes((nds) => [...nds, newNode]);
+  }, [setNodes]);
 
   return (
     <div className="h-screen flex">

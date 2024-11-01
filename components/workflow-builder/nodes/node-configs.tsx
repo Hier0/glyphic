@@ -1,4 +1,4 @@
-import { Bot, LayoutGrid, FileText, Target, Scale, Globe, Spider, Robot, Browser, Combine, Type, Search, Scissors, SplitSquareHorizontal, LucideIcon } from 'lucide-react';
+import { Bot, FileText, LayoutGrid, Target, Scale, Globe, Bug, Bot as RobotIcon, Globe2, Combine, Type, Search, Scissors, SplitSquareHorizontal } from 'lucide-react';
 import { NodeConfig } from './types';
 
 // AI Nodes
@@ -125,7 +125,7 @@ export const websiteCrawlerConfig: NodeConfig = {
   category: 'web-scraping',
   title: 'Website Crawler',
   description: 'Crawl multiple pages of a website following specific patterns.',
-  icon: Spider,
+  icon: Bug,
   fields: [
     {
       type: 'input',
@@ -149,7 +149,7 @@ export const webAgentScraperConfig: NodeConfig = {
   category: 'web-scraping',
   title: 'Web Agent Scraper',
   description: 'Use AI to intelligently navigate and extract data from websites.',
-  icon: Robot,
+  icon: RobotIcon,
   fields: [
     {
       type: 'input',
@@ -168,7 +168,7 @@ export const aiWebBrowserConfig: NodeConfig = {
   category: 'web-scraping',
   title: 'AI Web Browser',
   description: 'Browse websites autonomously using AI to find specific information.',
-  icon: Browser,
+  icon: Globe2,
   fields: [
     {
       type: 'input',

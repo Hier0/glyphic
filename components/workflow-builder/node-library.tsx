@@ -6,6 +6,9 @@ import {
 } from 'lucide-react';
 import { BaseNode } from './nodes/base-node';
 import { nodeConfigs } from './nodes/node-configs';
+import { NodeButton } from './components/node-button';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Bot, ChevronRight } from 'lucide-react';
 
 interface NodeLibraryProps {
   onAddNode: (nodeType: string) => void;
@@ -50,54 +53,55 @@ export function NodeLibrary({ onAddNode }: NodeLibraryProps) {
       {/* Node Categories */}
       <div className="space-y-4">
         {selectedCategory === 'core' && (
-          <div className="grid grid-cols-3 gap-4">
-            {/* AI Nodes */}
-            <div onClick={() => onAddNode('askAI')}>
-              <BaseNode data={{}} config={nodeConfigs.askAI} />
-            </div>
-            <div onClick={() => onAddNode('extractData')}>
-              <BaseNode data={{}} config={nodeConfigs.extractData} />
-            </div>
-            <div onClick={() => onAddNode('summarizer')}>
-              <BaseNode data={{}} config={nodeConfigs.summarizer} />
-            </div>
-            <div onClick={() => onAddNode('categorizer')}>
-              <BaseNode data={{}} config={nodeConfigs.categorizer} />
-            </div>
-            <div onClick={() => onAddNode('scorer')}>
-              <BaseNode data={{}} config={nodeConfigs.scorer} />
-            </div>
+          <div className="space-y-4">
+            {/* AI Nodes Card */}
+            <Card className="border rounded-xl">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <div className="rounded-lg bg-pink-100 p-2">
+                      <Bot className="h-5 w-5 text-pink-500" />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-semibold">Using AI</h3>
+                      <span className="text-sm text-gray-500">5</span>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-500">Leverage AI for various tasks</p>
+                </div>
+                <ChevronRight className="h-5 w-5 text-gray-400" />
+              </CardHeader>
+              <CardContent className="grid grid-cols-2 gap-2">
+                <NodeButton nodeType="askAI" config={nodeConfigs.askAI} onAddNode={onAddNode} variant="ai" />
+                <NodeButton nodeType="extractData" config={nodeConfigs.extractData} onAddNode={onAddNode} variant="ai" />
+                <NodeButton nodeType="summarizer" config={nodeConfigs.summarizer} onAddNode={onAddNode} variant="ai" />
+                <NodeButton nodeType="categorizer" config={nodeConfigs.categorizer} onAddNode={onAddNode} variant="ai" />
+                <NodeButton nodeType="scorer" config={nodeConfigs.scorer} onAddNode={onAddNode} variant="ai" />
+              </CardContent>
+            </Card>
 
-            {/* Web Scraping Nodes */}
-            <div onClick={() => onAddNode('websiteScraper')}>
-              <BaseNode data={{}} config={nodeConfigs.websiteScraper} />
-            </div>
-            <div onClick={() => onAddNode('websiteCrawler')}>
-              <BaseNode data={{}} config={nodeConfigs.websiteCrawler} />
-            </div>
-            <div onClick={() => onAddNode('webAgentScraper')}>
-              <BaseNode data={{}} config={nodeConfigs.webAgentScraper} />
-            </div>
-            <div onClick={() => onAddNode('aiWebBrowser')}>
-              <BaseNode data={{}} config={nodeConfigs.aiWebBrowser} />
-            </div>
+            {/* Web Scraping Nodes Card */}
+            <Card className="border rounded-xl">
+              {/* ... card header ... */}
+              <CardContent className="grid grid-cols-2 gap-2">
+                <NodeButton nodeType="websiteScraper" config={nodeConfigs.websiteScraper} onAddNode={onAddNode} variant="web-scraping" />
+                <NodeButton nodeType="websiteCrawler" config={nodeConfigs.websiteCrawler} onAddNode={onAddNode} variant="web-scraping" />
+                <NodeButton nodeType="webAgentScraper" config={nodeConfigs.webAgentScraper} onAddNode={onAddNode} variant="web-scraping" />
+                <NodeButton nodeType="aiWebBrowser" config={nodeConfigs.aiWebBrowser} onAddNode={onAddNode} variant="web-scraping" />
+              </CardContent>
+            </Card>
 
-            {/* Text Manipulation Nodes */}
-            <div onClick={() => onAddNode('combineText')}>
-              <BaseNode data={{}} config={nodeConfigs.combineText} />
-            </div>
-            <div onClick={() => onAddNode('textFormatter')}>
-              <BaseNode data={{}} config={nodeConfigs.textFormatter} />
-            </div>
-            <div onClick={() => onAddNode('findReplace')}>
-              <BaseNode data={{}} config={nodeConfigs.findReplace} />
-            </div>
-            <div onClick={() => onAddNode('splitText')}>
-              <BaseNode data={{}} config={nodeConfigs.splitText} />
-            </div>
-            <div onClick={() => onAddNode('chunkText')}>
-              <BaseNode data={{}} config={nodeConfigs.chunkText} />
-            </div>
+            {/* Text Manipulation Nodes Card */}
+            <Card className="border rounded-xl">
+              {/* ... card header ... */}
+              <CardContent className="grid grid-cols-2 gap-2">
+                <NodeButton nodeType="combineText" config={nodeConfigs.combineText} onAddNode={onAddNode} variant="text" />
+                <NodeButton nodeType="textFormatter" config={nodeConfigs.textFormatter} onAddNode={onAddNode} variant="text" />
+                <NodeButton nodeType="findReplace" config={nodeConfigs.findReplace} onAddNode={onAddNode} variant="text" />
+                <NodeButton nodeType="splitText" config={nodeConfigs.splitText} onAddNode={onAddNode} variant="text" />
+                <NodeButton nodeType="chunkText" config={nodeConfigs.chunkText} onAddNode={onAddNode} variant="text" />
+              </CardContent>
+            </Card>
           </div>
         )}
         
