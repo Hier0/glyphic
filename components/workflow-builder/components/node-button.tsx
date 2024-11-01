@@ -1,12 +1,12 @@
-import { BaseNode } from '../nodes/base-node';
-import { NodeConfig } from '../nodes/node-configs';
+
+import { NodeConfig } from '../nodes/types';
 import { Button } from '@/components/ui/button';
 
 interface NodeButtonProps {
   nodeType: string;
   config: NodeConfig;
   onAddNode: (nodeType: string) => void;
-  variant?: 'ai' | 'web-scraping' | 'text';
+  variant?: keyof typeof variantStyles;
 }
 
 const variantStyles = {
@@ -25,7 +25,7 @@ const variantStyles = {
 };
 
 export function NodeButton({ nodeType, config, onAddNode, variant = 'ai' }: NodeButtonProps) {
-  const styles = variantStyles[variant];
+  const styles = variantStyles[variant] || variantStyles.ai;
   const Icon = config.icon;
 
   return (

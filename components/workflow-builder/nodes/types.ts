@@ -7,7 +7,7 @@ export interface Field {
 }
 
 export interface NodeConfig {
-  category: 'ai' | 'web-scraping' | 'text';
+  category: 'ai' | 'web-scraping' | 'text'|'integration';
   title: string;
   description: string;
   icon: LucideIcon;

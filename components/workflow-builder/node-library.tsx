@@ -3,14 +3,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { 
   Search,
+  Code,
+  MessageSquare,
+  Cloud,
 } from 'lucide-react';
-import { BaseNode } from './nodes/base-node';
 import { nodeConfigs } from './nodes/node-configs';
 import { NodeButton } from './components/node-button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Bot, ChevronRight } from 'lucide-react';
-import { integrationConfigs } from './integrations/integration-configs';
-import { BaseIntegration } from './integrations/base-integration';
 
 interface NodeLibraryProps {
   onAddNode: (nodeType: string) => void;
@@ -108,15 +108,76 @@ export function NodeLibrary({ onAddNode }: NodeLibraryProps) {
         )}
         
         {selectedCategory === 'integrations' && (
-          <div className="grid grid-cols-2 gap-4">
-            {Object.entries(integrationConfigs).map(([key, config]) => (
-              <BaseIntegration
-                key={key}
-                {...config}
-                onConnect={() => onAddNode(`integration_${key}`)}
-                onConfigure={() => {}}
-              />
-            ))}
+          <div className="space-y-4">
+            {/* Developer Tools Card */}
+            <Card className="border rounded-xl">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <div className="rounded-lg bg-blue-100 p-2">
+                      <Code className="h-5 w-5 text-blue-500" />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-semibold">Developer Tools</h3>
+                      <span className="text-sm text-gray-500">2</span>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-500">Connect to development platforms</p>
+                </div>
+                <ChevronRight className="h-5 w-5 text-gray-400" />
+              </CardHeader>
+              <CardContent className="grid grid-cols-2 gap-2">
+                <NodeButton nodeType="github" config={nodeConfigs.github} onAddNode={onAddNode} variant="integration" />
+                <NodeButton nodeType="postgres" config={nodeConfigs.postgres} onAddNode={onAddNode} variant="integration" />
+              </CardContent>
+            </Card>
+
+            {/* Communication Card */}
+            <Card className="border rounded-xl">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <div className="rounded-lg bg-purple-100 p-2">
+                      <MessageSquare className="h-5 w-5 text-purple-500" />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-semibold">Communication</h3>
+                      <span className="text-sm text-gray-500">4</span>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-500">Connect to messaging platforms</p>
+                </div>
+                <ChevronRight className="h-5 w-5 text-gray-400" />
+              </CardHeader>
+              <CardContent className="grid grid-cols-2 gap-2">
+                <NodeButton nodeType="slack" config={nodeConfigs.slack} onAddNode={onAddNode} variant="integration" />
+                <NodeButton nodeType="gmail" config={nodeConfigs.gmail} onAddNode={onAddNode} variant="integration" />
+                <NodeButton nodeType="discord" config={nodeConfigs.discord} onAddNode={onAddNode} variant="integration" />
+                <NodeButton nodeType="twilio" config={nodeConfigs.twilio} onAddNode={onAddNode} variant="integration" />
+              </CardContent>
+            </Card>
+
+            {/* Cloud Storage Card */}
+            <Card className="border rounded-xl">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <div className="rounded-lg bg-orange-100 p-2">
+                      <Cloud className="h-5 w-5 text-orange-500" />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-semibold">Cloud Storage</h3>
+                      <span className="text-sm text-gray-500">1</span>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-500">Connect to storage services</p>
+                </div>
+                <ChevronRight className="h-5 w-5 text-gray-400" />
+              </CardHeader>
+              <CardContent className="grid grid-cols-2 gap-2">
+                <NodeButton nodeType="s3" config={nodeConfigs.s3} onAddNode={onAddNode} variant="integration" />
+              </CardContent>
+            </Card>
           </div>
         )}
         

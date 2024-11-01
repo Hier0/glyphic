@@ -48,8 +48,8 @@ import {
 import { Switch } from "@/components/ui/switch"
 import { NodeLibrary } from './workflow-builder/node-library'
 import { nodeConfigs } from './workflow-builder/nodes/node-configs'
-import { BaseIntegration } from './workflow-builder/integrations/base-integration';
-import { integrationConfigs } from './workflow-builder/integrations/integration-configs';
+
+
 
 // Custom Node Components
 function FlowBasicsNode({ data }: NodeProps) {

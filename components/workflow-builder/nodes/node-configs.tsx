@@ -1,4 +1,4 @@
-import { Bot, FileText, LayoutGrid, Target, Scale, Globe, Bug, Bot as RobotIcon, Globe2, Combine, Type, Search, Scissors, SplitSquareHorizontal } from 'lucide-react';
+import { Bot, FileText, LayoutGrid, Target, Scale, Globe, Bug, Bot as RobotIcon, Globe2, Combine, Type, Search, Scissors, SplitSquareHorizontal, Github, Database, MessageSquare, Cloud, Mail, MessageCircle, Phone } from 'lucide-react';
 import { NodeConfig } from './types';
 
 // AI Nodes
@@ -287,6 +287,219 @@ export const chunkTextConfig: NodeConfig = {
   ]
 };
 
+// Integration Nodes
+export const githubConfig: NodeConfig = {
+  category: 'integration',
+  title: 'GitHub',
+  description: 'Connect and interact with GitHub repositories, issues, and pull requests',
+  icon: Github,
+  fields: [
+    {
+      type: 'input',
+      label: 'Repository',
+      placeholder: 'owner/repository'
+    },
+    {
+      type: 'switch',
+      label: 'Connected'
+    }
+  ]
+};
+
+export const postgresConfig: NodeConfig = {
+  category: 'integration',
+  title: 'PostgreSQL',
+  description: 'Connect to PostgreSQL databases',
+  icon: Database,
+  fields: [
+    {
+      type: 'textarea',
+      label: 'Query',
+      placeholder: 'Enter SQL query'
+    }
+  ]
+};
+
+// Slack Nodes
+export const slackMessageSenderConfig: NodeConfig = {
+  category: 'integration',
+  title: 'Slack Message Sender',
+  description: 'Send message to Slack',
+  icon: MessageSquare,
+  fields: [
+    {
+      type: 'switch',
+      label: 'Connected to Slack'
+    },
+    {
+      type: 'input',
+      label: 'Channel',
+      placeholder: '#channel-name or @username'
+    },
+    {
+      type: 'textarea',
+      label: 'Message',
+      placeholder: 'Enter message content'
+    }
+  ]
+};
+
+export const slackMessageReaderConfig: NodeConfig = {
+  category: 'integration',
+  title: 'Slack Message Reader',
+  description: 'Get recent Slack messages',
+  icon: MessageSquare,
+  fields: [
+    {
+      type: 'switch',
+      label: 'Connected to Slack'
+    },
+    {
+      type: 'input',
+      label: 'Channel',
+      placeholder: '#channel-name or @username'
+    },
+    {
+      type: 'input',
+      label: 'Message Count',
+      placeholder: 'Number of messages to fetch'
+    }
+  ]
+};
+
+export const slackCanvasWriterConfig: NodeConfig = {
+  category: 'integration',
+  title: 'Slack Canvas Writer',
+  description: 'Create Slack Canvas',
+  icon: MessageSquare,
+  fields: [
+    {
+      type: 'switch',
+      label: 'Connected to Slack'
+    },
+    {
+      type: 'input',
+      label: 'Channel',
+      placeholder: '#channel-name'
+    },
+    {
+      type: 'input',
+      label: 'Canvas Title',
+      placeholder: 'Enter canvas title'
+    },
+    {
+      type: 'textarea',
+      label: 'Canvas Content',
+      placeholder: 'Enter canvas content'
+    }
+  ]
+};
+
+export const s3Config: NodeConfig = {
+  category: 'integration',
+  title: 'AWS S3',
+  description: 'Store and retrieve files from S3',
+  icon: Cloud,
+  fields: [
+    {
+      type: 'input',
+      label: 'Bucket',
+      placeholder: 'Enter S3 bucket name'
+    }
+  ]
+};
+
+export const gmailConfig: NodeConfig = {
+  category: 'integration',
+  title: 'Gmail',
+  description: 'Send and manage emails through your Gmail account',
+  icon: Mail,
+  fields: [
+    {
+      type: 'switch',
+      label: 'Connected to Gmail'
+    },
+    {
+      type: 'input',
+      label: 'To',
+      placeholder: 'recipient@example.com'
+    },
+    {
+      type: 'input',
+      label: 'Subject',
+      placeholder: 'Email subject'
+    },
+    {
+      type: 'textarea',
+      label: 'Message',
+      placeholder: 'Email content'
+    },
+    {
+      type: 'switch',
+      label: 'HTML Format'
+    }
+  ]
+};
+
+export const discordConfig: NodeConfig = {
+  category: 'integration',
+  title: 'Discord',
+  description: 'Send messages and interact with Discord servers',
+  icon: MessageCircle,
+  fields: [
+    {
+      type: 'switch',
+      label: 'Connected to Discord'
+    },
+    {
+      type: 'input',
+      label: 'Server',
+      placeholder: 'Select Discord server'
+    },
+    {
+      type: 'input',
+      label: 'Channel',
+      placeholder: '#channel-name'
+    },
+    {
+      type: 'textarea',
+      label: 'Message',
+      placeholder: 'Enter message content'
+    },
+    {
+      type: 'switch',
+      label: 'Send as Bot'
+    }
+  ]
+};
+
+export const twilioConfig: NodeConfig = {
+  category: 'integration',
+  title: 'Twilio',
+  description: 'Send SMS and WhatsApp messages via Twilio',
+  icon: Phone,
+  fields: [
+    {
+      type: 'switch',
+      label: 'Connected to Twilio'
+    },
+    {
+      type: 'input',
+      label: 'To Phone',
+      placeholder: '+1234567890'
+    },
+    {
+      type: 'textarea',
+      label: 'Message',
+      placeholder: 'Message content'
+    },
+    {
+      type: 'switch',
+      label: 'Use WhatsApp'
+    }
+  ]
+};
+
 // Export all configs
 export const nodeConfigs = {
   askAI: askAIConfig,
@@ -302,5 +515,14 @@ export const nodeConfigs = {
   textFormatter: textFormatterConfig,
   findReplace: findReplaceConfig,
   splitText: splitTextConfig,
-  chunkText: chunkTextConfig
+  chunkText: chunkTextConfig,
+  github: githubConfig,
+  postgres: postgresConfig,
+  slackMessageSender: slackMessageSenderConfig,
+  slackMessageReader: slackMessageReaderConfig,
+  slackCanvasWriter: slackCanvasWriterConfig,
+  s3: s3Config,
+  gmail: gmailConfig,
+  discord: discordConfig,
+  twilio: twilioConfig
 }; 

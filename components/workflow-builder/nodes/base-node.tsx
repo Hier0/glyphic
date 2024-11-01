@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
-import { Maximize2, LucideIcon } from 'lucide-react';
+import { Maximize2, LucideIcon, Link2, Settings } from 'lucide-react';
 import { NodeProps } from 'reactflow';
 
 interface Field {
@@ -15,7 +15,7 @@ interface Field {
 }
 
 interface NodeConfig {
-  category: 'ai' | 'web-scraping' | 'text';
+  category: 'ai' | 'web-scraping' | 'text' | 'integration';
   title: string;
   description: string;
   icon: LucideIcon;
@@ -37,6 +37,11 @@ const categoryStyles = {
     header: 'bg-orange-50',
     icon: 'text-orange-700',
     description: 'bg-orange-50/50 text-orange-900',
+  },
+  integration: {
+    header: 'bg-blue-50',
+    icon: 'text-blue-600',
+    description: 'bg-blue-50/50 text-blue-900',
   },
 };
 
@@ -74,11 +79,20 @@ export function BaseNode({ data, config }: NodeProps & { config: NodeConfig }) {
 
   return (
     <Card className="w-[400px] shadow-lg">
-      <CardHeader className={styles.header}>
+      <CardHeader className={`${styles.header} pb-3`}>
         <CardTitle className="flex items-center gap-2 text-sm font-medium">
           <Icon className={`h-4 w-4 ${styles.icon}`} />
           {config.title}
-          <Maximize2 className="h-4 w-4 ml-auto text-gray-500" />
+          {config.category === 'integration' && (
+            <>
+              <Link2 className="h-4 w-4 ml-auto text-blue-500 hover:text-blue-600 cursor-pointer" />
+              <Settings className="h-4 w-4 text-gray-500 hover:text-gray-600 cursor-pointer" />
+              <Maximize2 className="h-4 w-4 text-gray-500 hover:text-gray-600 cursor-pointer" />
+            </>
+          )}
+          {config.category !== 'integration' && (
+            <Maximize2 className="h-4 w-4 ml-auto text-gray-500" />
+          )}
         </CardTitle>
       </CardHeader>
       <CardContent className="p-4 space-y-4">
