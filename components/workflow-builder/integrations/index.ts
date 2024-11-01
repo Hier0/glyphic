@@ -1,3 +1,3 @@
-export * from './discord';
+export * from './integrations/discord';
 export * from './github';
-export * from './sms'; 
+export * from './integrations/sms'; 

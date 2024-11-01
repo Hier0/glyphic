@@ -9,6 +9,8 @@ import { nodeConfigs } from './nodes/node-configs';
 import { NodeButton } from './components/node-button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Bot, ChevronRight } from 'lucide-react';
+import { integrationConfigs } from './integrations/integration-configs';
+import { BaseIntegration } from './integrations/base-integration';
 
 interface NodeLibraryProps {
   onAddNode: (nodeType: string) => void;
@@ -106,8 +108,15 @@ export function NodeLibrary({ onAddNode }: NodeLibraryProps) {
         )}
         
         {selectedCategory === 'integrations' && (
-          <div className="text-center py-8 text-gray-500">
-            Integration nodes coming soon...
+          <div className="grid grid-cols-2 gap-4">
+            {Object.entries(integrationConfigs).map(([key, config]) => (
+              <BaseIntegration
+                key={key}
+                {...config}
+                onConnect={() => onAddNode(`integration_${key}`)}
+                onConfigure={() => {}}
+              />
+            ))}
           </div>
         )}
         

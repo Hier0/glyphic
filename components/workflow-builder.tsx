@@ -48,6 +48,8 @@ import {
 import { Switch } from "@/components/ui/switch"
 import { NodeLibrary } from './workflow-builder/node-library'
 import { nodeConfigs } from './workflow-builder/nodes/node-configs'
+import { BaseIntegration } from './workflow-builder/integrations/base-integration';
+import { integrationConfigs } from './workflow-builder/integrations/integration-configs';
 
 // Custom Node Components
 function FlowBasicsNode({ data }: NodeProps) {
@@ -191,11 +193,26 @@ function ExtractDataNode({ data }: NodeProps) {
   )
 }
 
+// Add IntegrationNode component
+function IntegrationNode({ data }: NodeProps) {
+  return (
+    <div className="w-[400px]">
+      <BaseIntegration
+        {...data.config}
+        isConnected={true}
+        onDisconnect={() => {}}
+        onConfigure={() => {}}
+      />
+    </div>
+  );
+}
+
 // Node types definition
 const nodeTypes = {
   flowBasics: FlowBasicsNode,
   askAI: AskAINode,
   extractData: ExtractDataNode,
+  integration: IntegrationNode,
 }
 
 // Initial nodes
@@ -219,23 +236,41 @@ export function WorkflowBuilder() {
   )
 
   const onAddNode = useCallback((type: string) => {
-    const config = nodeConfigs[type as keyof typeof nodeConfigs];
-    const newNode: Node = {
-      id: `${type}_${Date.now()}`,
-      type,
-      position: { 
-        x: Math.random() * 500, 
-        y: Math.random() * 500 
-      },
-      data: { 
-        label: config.title,
-        description: config.description,
-        fields: config.fields,
-        icon: config.icon,
-        category: config.category
-      },
-    };
-    setNodes((nds) => [...nds, newNode]);
+    if (type.startsWith('integration_')) {
+      const integrationKey = type.replace('integration_', '');
+      const config = integrationConfigs[integrationKey];
+      const newNode: Node = {
+        id: `${type}_${Date.now()}`,
+        type: 'integration',
+        position: { 
+          x: Math.random() * 500, 
+          y: Math.random() * 500 
+        },
+        data: { 
+          config,
+          label: config.name,
+        },
+      };
+      setNodes((nds) => [...nds, newNode]);
+    } else {
+      const config = nodeConfigs[type as keyof typeof nodeConfigs];
+      const newNode: Node = {
+        id: `${type}_${Date.now()}`,
+        type,
+        position: { 
+          x: Math.random() * 500, 
+          y: Math.random() * 500 
+        },
+        data: { 
+          label: config.title,
+          description: config.description,
+          fields: config.fields,
+          icon: config.icon,
+          category: config.category
+        },
+      };
+      setNodes((nds) => [...nds, newNode]);
+    }
   }, [setNodes]);
 
   return (
