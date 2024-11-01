@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, Button, Label, Input, Textare
 import { Layers, Maximize2 } from 'lucide-react';
 import { NodeProps } from 'reactflow';
 
-export function ChunkTextNode({ data }: NodeProps) {
+export default function ChunkTextNode({ data }: NodeProps) {
   return (
     <Card className="w-[400px] shadow-lg">
       <CardHeader className="bg-orange-50">

@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, Button, Label, Textarea, Inpu
 import { LayoutGrid, Maximize2 } from 'lucide-react';
 import { NodeProps } from 'reactflow';
 
-export function CategorizerNode({ data }: NodeProps) {
+export default function CategorizerNode({ data }: NodeProps) {
   return (
     <Card className="w-[400px] shadow-lg">
       <CardHeader className="bg-pink-50">

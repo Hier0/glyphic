@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, Button, Label, Textarea } fro
 import { Bot, Maximize2 } from 'lucide-react';
 import { NodeProps } from 'reactflow';
 
-export function AskAINode({ data }: NodeProps) {
+export default function AskAINode({ data }: NodeProps) {
   return (
     <Card className="w-[400px] shadow-lg">
       <CardHeader className="bg-pink-50">

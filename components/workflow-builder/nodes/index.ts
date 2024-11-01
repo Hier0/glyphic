@@ -1,12 +1,29 @@
 // AI Nodes
-export * from './ai';
+export { 
+  AskAINode,
+  ExtractDataNode,
+  SummarizerNode,
+  CategorizerNode,
+  ScorerNode 
+} from './ai';
 
 // Web Scraping Nodes
-export * from './web-scraping';
+export { 
+  WebsiteScraperNode,
+  WebsiteCrawlerNode,
+  WebAgentScraperNode,
+  AIWebBrowserNode 
+} from './web-scraping';
 
 // Text Manipulation Nodes
-export * from './text';
+export { 
+  CombineTextNode,
+  TextFormatterNode,
+  FindReplaceNode,
+  SplitTextNode,
+  ChunkTextNode 
+} from './text';
 
 // Core Nodes
-export * from './core/flow-basics-node';
-export * from './base-node';
+export { FlowBasicsNode } from './core/flow-basics-node';
+export { BaseNode } from './base-node';

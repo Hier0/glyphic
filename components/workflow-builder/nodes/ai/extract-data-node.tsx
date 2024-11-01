@@ -3,7 +3,7 @@ import { Card, CardContent, Input, Label, Switch, Button } from '@/components/ui
 import { Plus } from 'lucide-react';
 import { NodeProps } from 'reactflow';
 
-export function ExtractDataNode({ data }: NodeProps) {
+export default function ExtractDataNode({ data }: NodeProps) {
   return (
     <Card className="w-[400px] shadow-lg">
       <CardContent className="bg-muted p-2 border-b">

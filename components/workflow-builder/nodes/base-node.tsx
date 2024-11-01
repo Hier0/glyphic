@@ -1,5 +1,10 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle, Button, Label, Input, Textarea, Switch } from '@/components/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Switch } from '@/components/ui/switch';
 import { Maximize2, LucideIcon } from 'lucide-react';
 import { NodeProps } from 'reactflow';
 
