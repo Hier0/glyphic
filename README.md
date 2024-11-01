@@ -104,6 +104,11 @@ Security is a top priority for Glyphic. We implement:
 
 If you discover any security issues, please report them via our [security policy](SECURITY.md).
 
+## Inspirations
+
+https://github.com/n8n-io/n8n
+
+
 ## 📜 License
 
 MIT License - see [LICENSE](LICENSE) for details
