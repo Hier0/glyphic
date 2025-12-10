@@ -4,6 +4,7 @@ export interface Field {
   type: 'input' | 'textarea' | 'switch';
   label: string;
   placeholder?: string;
+  advanced?: boolean; // If true, field is hidden by default and shown when "Show More Options" is toggled
 }
 
 export interface NodeConfig {

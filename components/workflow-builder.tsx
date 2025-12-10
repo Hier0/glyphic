@@ -48,6 +48,8 @@ import {
 import { Switch } from "@/components/ui/switch"
 import { NodeLibrary } from './workflow-builder/node-library'
 import { nodeConfigs } from './workflow-builder/nodes/node-configs'
+import { BaseNode } from './workflow-builder/nodes/base-node'
+import { GmailNode } from './workflow-builder/nodes/gmail-node'
 
 
 
@@ -207,12 +209,34 @@ function IntegrationNode({ data }: NodeProps) {
   );
 }
 
+// Generic node wrapper that uses BaseNode for config-based nodes
+function ConfigNode({ data }: NodeProps) {
+  const config = nodeConfigs[data.nodeType as keyof typeof nodeConfigs];
+  if (!config) {
+    return null;
+  }
+  return <BaseNode data={data} config={config} />;
+}
+
 // Node types definition
 const nodeTypes = {
   flowBasics: FlowBasicsNode,
   askAI: AskAINode,
   extractData: ExtractDataNode,
   integration: IntegrationNode,
+  websiteScraper: ConfigNode,
+  websiteCrawler: ConfigNode,
+  webAgentScraper: ConfigNode,
+  aiWebBrowser: ConfigNode,
+  combineText: ConfigNode,
+  textFormatter: ConfigNode,
+  findReplace: ConfigNode,
+  splitText: ConfigNode,
+  chunkText: ConfigNode,
+  categorizer: ConfigNode,
+  summarizer: ConfigNode,
+  scorer: ConfigNode,
+  gmail: GmailNode,
 }
 
 // Initial nodes
@@ -262,6 +286,7 @@ export function WorkflowBuilder() {
           y: Math.random() * 500 
         },
         data: { 
+          nodeType: type,
           label: config.title,
           description: config.description,
           fields: config.fields,

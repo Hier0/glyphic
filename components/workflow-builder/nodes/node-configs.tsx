@@ -111,12 +111,56 @@ export const websiteScraperConfig: NodeConfig = {
     {
       type: 'input',
       label: 'URL',
-      placeholder: 'Enter website URL'
+      placeholder: 'https://example.com/page'
     },
     {
       type: 'input',
       label: 'CSS Selector',
-      placeholder: 'Enter CSS selector to target specific elements'
+      placeholder: 'Enter CSS selector to target specific elements (e.g., .article-content)'
+    },
+    {
+      type: 'switch',
+      label: 'Wait for JavaScript',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Wait Timeout (ms)',
+      placeholder: '30000',
+      advanced: true
+    },
+    {
+      type: 'textarea',
+      label: 'Custom Headers',
+      placeholder: '{"User-Agent": "Mozilla/5.0..."}',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Authentication Token',
+      placeholder: 'Bearer token or API key',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Follow Redirects',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Request Timeout (ms)',
+      placeholder: '60000',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Include Images',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Include Links',
+      advanced: true
     }
   ]
 };
@@ -130,17 +174,80 @@ export const websiteCrawlerConfig: NodeConfig = {
     {
       type: 'input',
       label: 'Start URL',
-      placeholder: 'Enter starting URL'
+      placeholder: 'https://example.com'
     },
     {
       type: 'input',
       label: 'URL Pattern',
-      placeholder: 'Enter URL pattern to follow'
+      placeholder: 'https://example.com/**/* (supports wildcards)'
     },
     {
       type: 'input',
       label: 'Max Pages',
-      placeholder: 'Maximum number of pages to crawl'
+      placeholder: '100'
+    },
+    {
+      type: 'input',
+      label: 'Max Depth',
+      placeholder: '5',
+      advanced: true
+    },
+    {
+      type: 'textarea',
+      label: 'Include Patterns',
+      placeholder: 'One pattern per line (regex supported)',
+      advanced: true
+    },
+    {
+      type: 'textarea',
+      label: 'Exclude Patterns',
+      placeholder: 'One pattern per line (regex supported)',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Respect Robots.txt',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Wait for JavaScript',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Wait Timeout (ms)',
+      placeholder: '30000',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Delay Between Requests (ms)',
+      placeholder: '1000',
+      advanced: true
+    },
+    {
+      type: 'textarea',
+      label: 'Custom Headers',
+      placeholder: '{"User-Agent": "Mozilla/5.0..."}',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Authentication Token',
+      placeholder: 'Bearer token or API key',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Follow External Links',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Request Timeout (ms)',
+      placeholder: '60000',
+      advanced: true
     }
   ]
 };
@@ -412,7 +519,7 @@ export const s3Config: NodeConfig = {
 export const gmailConfig: NodeConfig = {
   category: 'integration',
   title: 'Gmail',
-  description: 'Send and manage emails through your Gmail account',
+  description: 'Send emails to your Gmail account or read emails from your Gmail inbox. Sends PDF or email based on connected data.',
   icon: Mail,
   fields: [
     {
@@ -420,23 +527,111 @@ export const gmailConfig: NodeConfig = {
       label: 'Connected to Gmail'
     },
     {
+      type: 'switch',
+      label: 'Send Email Mode',
+      placeholder: 'ON = Send email, OFF = Read emails'
+    },
+    // Send Email Fields (Basic)
+    {
       type: 'input',
       label: 'To',
-      placeholder: 'recipient@example.com'
+      placeholder: 'recipient@example.com (your own email or others)'
     },
     {
       type: 'input',
       label: 'Subject',
-      placeholder: 'Email subject'
+      placeholder: 'Email subject line'
     },
     {
       type: 'textarea',
-      label: 'Message',
-      placeholder: 'Email content'
+      label: 'Message Body',
+      placeholder: 'Enter your email message content (or connect data to send)'
+    },
+    // Send Email Fields (Advanced)
+    {
+      type: 'input',
+      label: 'CC',
+      placeholder: 'cc@example.com (optional)',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'BCC',
+      placeholder: 'bcc@example.com (optional)',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Reply To',
+      placeholder: 'reply-to@example.com (optional)',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Attachments',
+      placeholder: 'File paths or URLs (comma-separated). PDFs will be attached if connected.',
+      advanced: true
     },
     {
       type: 'switch',
-      label: 'HTML Format'
+      label: 'HTML Format',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Mark as Important',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Request Read Receipt',
+      advanced: true
+    },
+    // Read Email Fields (Advanced)
+    {
+      type: 'input',
+      label: 'Search Query',
+      placeholder: 'from:sender@example.com OR subject:meeting',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Max Results',
+      placeholder: '10',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Label/Folder',
+      placeholder: 'INBOX, SENT, DRAFTS, or custom label',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'From Sender',
+      placeholder: 'sender@example.com',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Date Range (Days)',
+      placeholder: '7 (last 7 days)',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Unread Only',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Include Attachments',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Mark as Read',
+      advanced: true
     }
   ]
 };

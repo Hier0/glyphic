@@ -22,6 +22,10 @@ const variantStyles = {
     icon: 'text-orange-700',
     bg: 'bg-gray-50',
   },
+  integration: {
+    icon: 'text-blue-600',
+    bg: 'bg-gray-50',
+  },
 };
 
 export function NodeButton({ nodeType, config, onAddNode, variant = 'ai' }: NodeButtonProps) {

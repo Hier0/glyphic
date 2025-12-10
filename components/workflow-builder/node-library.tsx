@@ -150,7 +150,7 @@ export function NodeLibrary({ onAddNode }: NodeLibraryProps) {
                 <ChevronRight className="h-5 w-5 text-gray-400" />
               </CardHeader>
               <CardContent className="grid grid-cols-2 gap-2">
-                <NodeButton nodeType="slack" config={nodeConfigs.slack} onAddNode={onAddNode} variant="integration" />
+                <NodeButton nodeType="slackMessageSender" config={nodeConfigs.slackMessageSender} onAddNode={onAddNode} variant="integration" />
                 <NodeButton nodeType="gmail" config={nodeConfigs.gmail} onAddNode={onAddNode} variant="integration" />
                 <NodeButton nodeType="discord" config={nodeConfigs.discord} onAddNode={onAddNode} variant="integration" />
                 <NodeButton nodeType="twilio" config={nodeConfigs.twilio} onAddNode={onAddNode} variant="integration" />
