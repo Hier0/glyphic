@@ -18,13 +18,15 @@ const categoryStyles = {
 };
 
 interface GmailNodeProps extends NodeProps {
-  data?: {
+  data: {
     nodeType?: string;
     label?: string;
     description?: string;
     fields?: Field[];
     icon?: any;
     category?: string;
+    onDataChange?: (nodeId: string, outputData: unknown) => void;
+    outputData?: unknown;
   };
 }
 
