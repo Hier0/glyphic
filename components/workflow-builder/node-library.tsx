@@ -11,6 +11,8 @@ import {
   Image,
   Video,
   Cpu,
+  Music,
+  FileCode,
 } from 'lucide-react';
 import { nodeConfigs } from './nodes/node-configs';
 import { NodeButton } from './components/node-button';
@@ -78,7 +80,7 @@ export function NodeLibrary({ onAddNode }: NodeLibraryProps) {
                     </div>
                     <div className="flex items-center gap-2">
                       <h3 className="font-semibold">Using AI</h3>
-                      <span className="text-sm text-gray-500">7</span>
+                      <span className="text-sm text-gray-500">9</span>
                     </div>
                   </div>
                   <p className="text-sm text-gray-500">Leverage AI for various tasks</p>
@@ -93,6 +95,8 @@ export function NodeLibrary({ onAddNode }: NodeLibraryProps) {
                 <NodeButton nodeType="scorer" config={nodeConfigs.scorer} onAddNode={onAddNode} variant="ai" />
                 <NodeButton nodeType="imageGeneration" config={nodeConfigs.imageGeneration} onAddNode={onAddNode} variant="ai" />
                 <NodeButton nodeType="imageModelSelector" config={nodeConfigs.imageModelSelector} onAddNode={onAddNode} variant="ai" />
+                <NodeButton nodeType="videoGeneration" config={nodeConfigs.videoGeneration} onAddNode={onAddNode} variant="ai" />
+                <NodeButton nodeType="videoModelSelector" config={nodeConfigs.videoModelSelector} onAddNode={onAddNode} variant="ai" />
               </CardContent>
             </Card>
 
@@ -233,17 +237,15 @@ export function NodeLibrary({ onAddNode }: NodeLibraryProps) {
                     </div>
                     <div className="flex items-center gap-2">
                       <h3 className="font-semibold">LoRa's</h3>
-                      <span className="text-sm text-gray-500">0</span>
+                      <span className="text-sm text-gray-500">1</span>
                     </div>
                   </div>
                   <p className="text-sm text-gray-500">Low-Rank Adaptation models for fine-tuning</p>
                 </div>
                 <ChevronRight className="h-5 w-5 text-gray-400" />
               </CardHeader>
-              <CardContent>
-                <div className="text-center py-8 text-gray-500 text-sm">
-                  No LoRa models available yet
-                </div>
+              <CardContent className="grid grid-cols-2 gap-2">
+                <NodeButton nodeType="loraModel" config={nodeConfigs.loraModel} onAddNode={onAddNode} variant="integration" />
               </CardContent>
             </Card>
 
@@ -257,17 +259,16 @@ export function NodeLibrary({ onAddNode }: NodeLibraryProps) {
                     </div>
                     <div className="flex items-center gap-2">
                       <h3 className="font-semibold">Images</h3>
-                      <span className="text-sm text-gray-500">0</span>
+                      <span className="text-sm text-gray-500">2</span>
                     </div>
                   </div>
                   <p className="text-sm text-gray-500">Image generation and processing models</p>
                 </div>
                 <ChevronRight className="h-5 w-5 text-gray-400" />
               </CardHeader>
-              <CardContent>
-                <div className="text-center py-8 text-gray-500 text-sm">
-                  No image models available yet
-                </div>
+              <CardContent className="grid grid-cols-2 gap-2">
+                <NodeButton nodeType="imageModel" config={nodeConfigs.imageModel} onAddNode={onAddNode} variant="integration" />
+                <NodeButton nodeType="textEncoder" config={nodeConfigs.textEncoder} onAddNode={onAddNode} variant="integration" />
               </CardContent>
             </Card>
 
@@ -281,17 +282,16 @@ export function NodeLibrary({ onAddNode }: NodeLibraryProps) {
                     </div>
                     <div className="flex items-center gap-2">
                       <h3 className="font-semibold">Video's</h3>
-                      <span className="text-sm text-gray-500">0</span>
+                      <span className="text-sm text-gray-500">2</span>
                     </div>
                   </div>
                   <p className="text-sm text-gray-500">Video generation and processing models</p>
                 </div>
                 <ChevronRight className="h-5 w-5 text-gray-400" />
               </CardHeader>
-              <CardContent>
-                <div className="text-center py-8 text-gray-500 text-sm">
-                  No video models available yet
-                </div>
+              <CardContent className="grid grid-cols-2 gap-2">
+                <NodeButton nodeType="videoModel" config={nodeConfigs.videoModel} onAddNode={onAddNode} variant="integration" />
+                <NodeButton nodeType="audioModel" config={nodeConfigs.audioModel} onAddNode={onAddNode} variant="integration" />
               </CardContent>
             </Card>
           </div>

@@ -1,4 +1,4 @@
-import { Bot, FileText, LayoutGrid, Target, Scale, Globe, Bug, Bot as RobotIcon, Globe2, Combine, Type, Search, Scissors, SplitSquareHorizontal, Github, Database, MessageSquare, Cloud, Mail, MessageCircle, Phone } from 'lucide-react';
+import { Bot, FileText, LayoutGrid, Target, Scale, Globe, Bug, Bot as RobotIcon, Globe2, Combine, Type, Search, Scissors, SplitSquareHorizontal, Github, Database, MessageSquare, Cloud, Mail, MessageCircle, Phone, HardDrive, Box, CloudUpload, FileSpreadsheet, Table, Image, Sparkles, Cpu, Sliders, Video, Layers, Music, FileCode } from 'lucide-react';
 import { NodeConfig } from './types';
 
 // AI Nodes
@@ -97,6 +97,323 @@ export const scorerConfig: NodeConfig = {
       type: 'input',
       label: 'Criteria',
       placeholder: 'Enter scoring criteria'
+    }
+  ]
+};
+
+export const imageGenerationConfig: NodeConfig = {
+  category: 'ai',
+  title: 'Image Generation',
+  description: 'Generate images from text prompts using AI image models.',
+  icon: Image,
+  fields: [
+    {
+      type: 'textarea',
+      label: 'Prompt',
+      placeholder: 'A beautiful sunset over mountains, cinematic lighting, 4k'
+    },
+    {
+      type: 'input',
+      label: 'Negative Prompt',
+      placeholder: 'Things to avoid in the image (optional)'
+    },
+    {
+      type: 'input',
+      label: 'Width',
+      placeholder: '1024 (default)'
+    },
+    {
+      type: 'input',
+      label: 'Height',
+      placeholder: '1024 (default)'
+    },
+    {
+      type: 'input',
+      label: 'Number of Images',
+      placeholder: '1 (number of images to generate)',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Guidance Scale',
+      placeholder: '7.5 (how closely to follow the prompt)',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Seed',
+      placeholder: 'Random seed for reproducibility (optional)',
+      advanced: true
+    }
+  ]
+};
+
+export const imageModelSelectorConfig: NodeConfig = {
+  category: 'ai',
+  title: 'Image Model Selector',
+  description: 'Select and configure the AI model for image generation.',
+  icon: Cpu,
+  fields: [
+    {
+      type: 'input',
+      label: 'Model',
+      placeholder: 'dall-e-3, stable-diffusion-xl, midjourney, etc.'
+    },
+    {
+      type: 'input',
+      label: 'API Key',
+      placeholder: 'Enter API key for the selected model',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Quality',
+      placeholder: 'standard, hd (for DALL-E)',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Style',
+      placeholder: 'vivid, natural (for DALL-E 3)',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Use Custom Endpoint',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Custom Endpoint URL',
+      placeholder: 'https://api.example.com/v1/images',
+      advanced: true
+    }
+  ]
+};
+
+export const videoGenerationConfig: NodeConfig = {
+  category: 'ai',
+  title: 'Video Generation',
+  description: 'Generate videos from text prompts, images, or a combination using AI video models.',
+  icon: Video,
+  fields: [
+    {
+      type: 'textarea',
+      label: 'Prompt',
+      placeholder: 'A dreamy scene where a little cat is sleeping. Zoom in, and the cat opens its eyes...'
+    },
+    {
+      type: 'input',
+      label: 'Negative Prompt',
+      placeholder: 'Things to avoid in the video (optional)'
+    },
+    {
+      type: 'input',
+      label: 'Width',
+      placeholder: '640 (default)'
+    },
+    {
+      type: 'input',
+      label: 'Height',
+      placeholder: '640 (default)'
+    },
+    {
+      type: 'input',
+      label: 'Length',
+      placeholder: '81 (number of frames)'
+    },
+    {
+      type: 'input',
+      label: 'FPS',
+      placeholder: '24 (frames per second)',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Steps',
+      placeholder: '4 (sampling steps)',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'CFG Scale',
+      placeholder: '1.0 (guidance scale)',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Seed',
+      placeholder: 'Random seed for reproducibility (optional)',
+      advanced: true
+    }
+  ]
+};
+
+export const videoModelSelectorConfig: NodeConfig = {
+  category: 'ai',
+  title: 'Video Model Selector',
+  description: 'Select and configure the AI model for video generation.',
+  icon: Cpu,
+  fields: [
+    {
+      type: 'input',
+      label: 'Model',
+      placeholder: 'wan2.2, stable-video-diffusion, runway-gen2, etc.'
+    },
+    {
+      type: 'input',
+      label: 'API Key',
+      placeholder: 'Enter API key for the selected model',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Weight Dtype',
+      placeholder: 'default, fp8, fp16, etc.',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Use Custom Endpoint',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Custom Endpoint URL',
+      placeholder: 'https://api.example.com/v1/videos',
+      advanced: true
+    }
+  ]
+};
+
+export const imageModelConfig: NodeConfig = {
+  category: 'integration',
+  title: 'Image Model',
+  description: 'Load and configure image generation models (Diffusion, VAE, etc.)',
+  icon: Image,
+  fields: [
+    {
+      type: 'input',
+      label: 'Model Name',
+      placeholder: 'wan2.2_fun_inpaint_high_noise_14B_fp8_scaled.safetensors'
+    },
+    {
+      type: 'input',
+      label: 'Weight Dtype',
+      placeholder: 'default, fp8, fp16, etc.'
+    },
+    {
+      type: 'input',
+      label: 'Device',
+      placeholder: 'default, cuda, cpu',
+      advanced: true
+    }
+  ]
+};
+
+export const videoModelConfig: NodeConfig = {
+  category: 'integration',
+  title: 'Video Model',
+  description: 'Load and configure video generation models for AI video creation.',
+  icon: Video,
+  fields: [
+    {
+      type: 'input',
+      label: 'Model Name',
+      placeholder: 'wan2.2_i2v_lightx2v_4steps_lora.safetensors'
+    },
+    {
+      type: 'input',
+      label: 'Weight Dtype',
+      placeholder: 'default, fp8, fp16, etc.'
+    },
+    {
+      type: 'input',
+      label: 'Device',
+      placeholder: 'default, cuda, cpu',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Shift',
+      placeholder: '8.00 (sampling shift)',
+      advanced: true
+    }
+  ]
+};
+
+export const loraModelConfig: NodeConfig = {
+  category: 'integration',
+  title: 'LoRa Model',
+  description: 'Load Low-Rank Adaptation (LoRa) models for fine-tuning base models.',
+  icon: Layers,
+  fields: [
+    {
+      type: 'input',
+      label: 'LoRa Name',
+      placeholder: 'wan2.2_i2v_lightx2v_4steps_lora.safetensors'
+    },
+    {
+      type: 'input',
+      label: 'Strength Model',
+      placeholder: '1.00 (0.0 to 1.0)'
+    },
+    {
+      type: 'input',
+      label: 'Strength Clip',
+      placeholder: '1.00 (0.0 to 1.0)',
+      advanced: true
+    }
+  ]
+};
+
+export const audioModelConfig: NodeConfig = {
+  category: 'integration',
+  title: 'Audio Model',
+  description: 'Load and configure audio processing and generation models.',
+  icon: Music,
+  fields: [
+    {
+      type: 'input',
+      label: 'Model Name',
+      placeholder: 'Enter audio model name'
+    },
+    {
+      type: 'input',
+      label: 'Model Type',
+      placeholder: 'tts, music-generation, audio-enhancement, etc.',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Device',
+      placeholder: 'default, cuda, cpu',
+      advanced: true
+    }
+  ]
+};
+
+export const textEncoderConfig: NodeConfig = {
+  category: 'integration',
+  title: 'Text Encoder',
+  description: 'Load CLIP or other text encoders for prompt conditioning.',
+  icon: FileCode,
+  fields: [
+    {
+      type: 'input',
+      label: 'CLIP Name',
+      placeholder: 'clip_umt5_xxl_fp8_e4m3fn_scaled.safetensors'
+    },
+    {
+      type: 'input',
+      label: 'Type',
+      placeholder: 'wan, stable_diffusion, etc.'
+    },
+    {
+      type: 'input',
+      label: 'Device',
+      placeholder: 'default, cuda, cpu',
+      advanced: true
     }
   ]
 };
@@ -695,6 +1012,253 @@ export const twilioConfig: NodeConfig = {
   ]
 };
 
+export const googleDriveConfig: NodeConfig = {
+  category: 'integration',
+  title: 'Google Drive',
+  description: 'Upload, download, and manage files in Google Drive',
+  icon: HardDrive,
+  fields: [
+    {
+      type: 'switch',
+      label: 'Connected to Google Drive'
+    },
+    {
+      type: 'input',
+      label: 'Folder Path',
+      placeholder: '/My Drive/FolderName or folder ID'
+    },
+    {
+      type: 'input',
+      label: 'File Name',
+      placeholder: 'Enter file name (for uploads)'
+    },
+    {
+      type: 'switch',
+      label: 'Upload Mode',
+      placeholder: 'ON = Upload file, OFF = Download file'
+    },
+    {
+      type: 'input',
+      label: 'File ID',
+      placeholder: 'Google Drive file ID (for downloads)',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'MIME Type',
+      placeholder: 'text/plain, application/pdf, etc.',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Create Folder if Not Exists',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Overwrite Existing Files',
+      advanced: true
+    }
+  ]
+};
+
+export const dropboxConfig: NodeConfig = {
+  category: 'integration',
+  title: 'Dropbox',
+  description: 'Upload, download, and manage files in Dropbox',
+  icon: Box,
+  fields: [
+    {
+      type: 'switch',
+      label: 'Connected to Dropbox'
+    },
+    {
+      type: 'input',
+      label: 'Folder Path',
+      placeholder: '/FolderName or folder path'
+    },
+    {
+      type: 'input',
+      label: 'File Name',
+      placeholder: 'Enter file name (for uploads)'
+    },
+    {
+      type: 'switch',
+      label: 'Upload Mode',
+      placeholder: 'ON = Upload file, OFF = Download file'
+    },
+    {
+      type: 'input',
+      label: 'File Path',
+      placeholder: 'Full Dropbox file path (for downloads)',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Create Folder if Not Exists',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Overwrite Existing Files',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Generate Shared Link',
+      advanced: true
+    }
+  ]
+};
+
+export const iCloudConfig: NodeConfig = {
+  category: 'integration',
+  title: 'iCloud',
+  description: 'Upload, download, and manage files in iCloud Drive',
+  icon: CloudUpload,
+  fields: [
+    {
+      type: 'switch',
+      label: 'Connected to iCloud'
+    },
+    {
+      type: 'input',
+      label: 'Folder Path',
+      placeholder: '/Documents/FolderName or folder path'
+    },
+    {
+      type: 'input',
+      label: 'File Name',
+      placeholder: 'Enter file name (for uploads)'
+    },
+    {
+      type: 'switch',
+      label: 'Upload Mode',
+      placeholder: 'ON = Upload file, OFF = Download file'
+    },
+    {
+      type: 'input',
+      label: 'File Path',
+      placeholder: 'Full iCloud file path (for downloads)',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Create Folder if Not Exists',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Overwrite Existing Files',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Sync After Upload',
+      advanced: true
+    }
+  ]
+};
+
+export const googleSheetsReaderConfig: NodeConfig = {
+  category: 'integration',
+  title: 'Google Sheets Reader',
+  description: 'Read the content from a Google Sheets file and outputs a list of the data in each column. Note: Your Google Sheet must have column headers in the first row.',
+  icon: FileSpreadsheet,
+  fields: [
+    {
+      type: 'switch',
+      label: 'Connected to Google Sheets'
+    },
+    {
+      type: 'switch',
+      label: 'Use Link',
+      placeholder: 'ON = Use Google Sheets link, OFF = Use Sheet ID'
+    },
+    {
+      type: 'input',
+      label: 'Link',
+      placeholder: 'https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/edit'
+    },
+    {
+      type: 'input',
+      label: 'Sheet ID',
+      placeholder: 'Enter Google Sheets ID (if not using link)',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Sheet Name',
+      placeholder: 'Sheet1 (default: first sheet)',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Range',
+      placeholder: 'A1:Z100 (leave empty for all data)',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Include Headers',
+      placeholder: 'Include column headers in output',
+      advanced: true
+    }
+  ]
+};
+
+export const googleSheetsWriterConfig: NodeConfig = {
+  category: 'integration',
+  title: 'Google Sheets Writer',
+  description: 'Write the content to a Google Sheets file given a list of data to put in each column. Note: Your Google Sheet must have column headers in the first row.',
+  icon: Table,
+  fields: [
+    {
+      type: 'switch',
+      label: 'Connected to Google Sheets'
+    },
+    {
+      type: 'switch',
+      label: 'Use Link',
+      placeholder: 'ON = Use Google Sheets link, OFF = Use Sheet ID'
+    },
+    {
+      type: 'input',
+      label: 'Link',
+      placeholder: 'https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/edit'
+    },
+    {
+      type: 'input',
+      label: 'Sheet ID',
+      placeholder: 'Enter Google Sheets ID (if not using link)',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Sheet Name',
+      placeholder: 'Sheet1 (default: first sheet)',
+      advanced: true
+    },
+    {
+      type: 'input',
+      label: 'Starting Cell',
+      placeholder: 'A2 (where to start writing data)',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Append Mode',
+      placeholder: 'Append data instead of overwriting',
+      advanced: true
+    },
+    {
+      type: 'switch',
+      label: 'Clear Sheet Before Writing',
+      advanced: true
+    }
+  ]
+};
+
 // Export all configs
 export const nodeConfigs = {
   askAI: askAIConfig,
@@ -702,6 +1266,15 @@ export const nodeConfigs = {
   categorizer: categorizerConfig,
   summarizer: summarizerConfig,
   scorer: scorerConfig,
+  imageGeneration: imageGenerationConfig,
+  imageModelSelector: imageModelSelectorConfig,
+  videoGeneration: videoGenerationConfig,
+  videoModelSelector: videoModelSelectorConfig,
+  imageModel: imageModelConfig,
+  videoModel: videoModelConfig,
+  loraModel: loraModelConfig,
+  audioModel: audioModelConfig,
+  textEncoder: textEncoderConfig,
   websiteScraper: websiteScraperConfig,
   websiteCrawler: websiteCrawlerConfig,
   webAgentScraper: webAgentScraperConfig,
@@ -719,5 +1292,10 @@ export const nodeConfigs = {
   s3: s3Config,
   gmail: gmailConfig,
   discord: discordConfig,
-  twilio: twilioConfig
+  twilio: twilioConfig,
+  googleDrive: googleDriveConfig,
+  dropbox: dropboxConfig,
+  iCloud: iCloudConfig,
+  googleSheetsReader: googleSheetsReaderConfig,
+  googleSheetsWriter: googleSheetsWriterConfig
 }; 

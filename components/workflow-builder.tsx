@@ -416,6 +416,13 @@ const nodeTypes = {
   scorer: ConfigNode,
   imageGeneration: ConfigNode,
   imageModelSelector: ConfigNode,
+  videoGeneration: ConfigNode,
+  videoModelSelector: ConfigNode,
+  imageModel: ConfigNode,
+  videoModel: ConfigNode,
+  loraModel: ConfigNode,
+  audioModel: ConfigNode,
+  textEncoder: ConfigNode,
   gmail: GmailNode,
   googleDrive: ConfigNode,
   dropbox: ConfigNode,
@@ -448,7 +455,7 @@ export function WorkflowBuilder() {
   const [edges, setEdges, onEdgesChange] = useEdgesState([])
   const [selectedTab, setSelectedTab] = useState('nodes')
   const nodeDataMapRef = useRef<Record<string, unknown>>({})
-  const handleDataChangeRef = useRef<(nodeId: string, outputData: unknown) => void>()
+  const handleDataChangeRef = useRef<((nodeId: string, outputData: unknown) => void) | undefined>(undefined)
 
   // Handle data changes from nodes - use ref to avoid recreating function
   const handleDataChange = useCallback((nodeId: string, outputData: unknown) => {
